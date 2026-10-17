@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dave Taylor's Portfolio</title>
+    <meta name="description" content="Websites and dashboards built by Dave Taylor.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body data-theme="play">
+    <a class="skip" href="#projects">Skip to projects</a>
+    <header class="site-header">
+      <h1>Dave Taylor's Portfolio</h1>
+      <p class="subtitle">Click left and right arrows to scroll images, click on an image to magnify</p>
+      <div class="tabs" role="tablist" aria-label="Portfolio">
+        <button class="tab tab-play" id="tab-play" type="button" role="tab" aria-selected="true" aria-controls="projects" data-group="play">Personal</button>
+        <button class="tab tab-work" id="tab-work" type="button" role="tab" aria-selected="false" aria-controls="projects" data-group="work" tabindex="-1">Career</button>
+      </div>
+    </header>
+    <main id="projects" role="tabpanel" aria-labelledby="tab-play"></main>
+    <footer class="site-footer">
+      <a href="mailto:dtaylor113@gmail.com">Contact: dtaylor113@gmail.com</a>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>

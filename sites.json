@@ -1,0 +1,208 @@
+{
+  "sites": [
+    {
+      "id": "slideshow-studio",
+      "name": "Slideshow Studio",
+      "group": "play",
+      "year": 2025,
+      "url": "https://slideshowstudio.ai/",
+      "repository": "https://github.com/dtaylor113/ai-slideshow",
+      "description": "An AI photo studio that generates variations of real memories. Styles are often based on a real artist or a particular art style, and when they are, the app includes an artist bio or a definition of the style, so a variation is also a way to learn about the person who inspired it. It showcases over 800 generated variations of 200 family photos. Each one starts by reading the original for mood, setting, landmarks, objects, and subtle text cues, then drafts a tailored art direction and renders a new image that fuses the photo with that style.",
+      "ordered": true,
+      "collapsed": true,
+      "pointsLabel": "How it works",
+      "points": [
+        "An original family photo is selected from the library.",
+        "A vision model looks at the photo and returns a short description of the subjects, setting, and mood.",
+        "That description goes to another model, which invents a fresh art direction from the mood, setting, objects, and people in the scene.",
+        "An image model receives the original photo plus that art direction and renders a new variation inspired by the source.",
+        "When an artist or art style is mentioned, the app fetches a short overview of the inspiration."
+      ],
+      "architecture": "React, TypeScript, and Vite in the browser. A Python API runs the vision and image generation and serves each album.",
+      "images": [
+        { "src": "", "alt": "Slideshow Studio screenshot 1" },
+        { "src": "", "alt": "Slideshow Studio screenshot 2" }
+      ]
+    },
+    {
+      "id": "head-in-the-game",
+      "name": "Head in the Game",
+      "group": "play",
+      "year": 2025,
+      "url": "https://headinthegame.ai/",
+      "repository": "https://github.com/dtaylor113/ai-game",
+      "description": "Upload one headshot and become a playable character in a catalog of games.",
+      "pointsLabel": "Games",
+      "points": [
+        "Fight: 2D combat against the computer or a second player.",
+        "Trivia: a head-to-head quiz in that same arena. Pick a category — science, geography, history, pop culture, general knowledge, or all of them — and a difficulty from easy to really hard, or random. A countdown is optional, from 5 to 15 seconds. Each player chooses a head and a body, then you play against the computer, set two computers against each other, or play two people. Scores are kept in dollars, and a missed answer can be stolen.",
+        "Gems: a match-3 puzzle built from character heads.",
+        "Light Cycles: Tron-style light trails.",
+        "Match!: toddler face-matching cards.",
+        "Whack!: heads pop up to be bonked."
+      ],
+      "architecture": "Nano Banana, the Gemini image API, generates expression sprites and fighter assets from the headshot. Character Studio then edits cleanup and head placement, with a Pro or Basic regenerate. Fight adds Edit, versus-CPU, and two-player modes.",
+      "images": [
+        { "src": "", "alt": "Head in the Game screenshot 1" },
+        { "src": "", "alt": "Head in the Game screenshot 2" }
+      ]
+    },
+    {
+      "id": "fire-tv-watchlist",
+      "name": "Fire TV Watchlist",
+      "group": "play",
+      "year": 2026,
+      "url": "",
+      "repository": "https://github.com/dtaylor113/tv-watchlist",
+      "description": "I created a watchlist for my wife and me for the household Fire TVs. We search for movies and shows across all streaming services, keep one shared list, and launch them from each stick. For every series, each card shows the episode we last marked watched, the latest episode that has already aired, and when the next one is scheduled to drop. Every Fire Stick syncs with one central database, and a new version can be sent from a laptop to all five sticks in the house.",
+      "architecture": "Expo and React Native for TV, installed as a sideloaded Android app. Search, seasons, and the list live in Supabase and are reached through edge functions.",
+      "images": [
+        { "src": "", "alt": "Fire TV Watchlist screenshot 1" },
+        { "src": "", "alt": "Fire TV Watchlist screenshot 2" }
+      ]
+    },
+    {
+      "id": "taylor-family-memories",
+      "name": "Taylor Family Memories",
+      "group": "play",
+      "year": 2026,
+      "url": "https://taylorfabfive.com/",
+      "repository": "https://github.com/dtaylor113/vr-thing",
+      "description": "I created a virtual house to share family videos and stories. Each family member has their own room. You can view it in a browser, but it's best experienced in a VR headset, walking between themed spaces of photos, video, music, and 3D objects.",
+      "architecture": "Three.js and WebXR, bundled with Vite. Rooms load as they are entered. A desktop edit mode places and saves the exhibits.",
+      "images": [
+        { "src": "", "alt": "Taylor Family Memories screenshot 1" },
+        { "src": "", "alt": "Taylor Family Memories screenshot 2" }
+      ]
+    },
+    {
+      "id": "yard-sale-mapper",
+      "name": "Yard Sale Mapper",
+      "group": "play",
+      "year": 2026,
+      "url": "",
+      "repository": "https://github.com/dtaylor113/yard-sale-mapper",
+      "description": "A planner for a town-wide yard sale. Import a spreadsheet of addresses, place the stops on a map, choose which ones to visit, and hand an ordered round trip to Google Maps.",
+      "architecture": "React, TypeScript, and Vite, with Leaflet on OpenStreetMap. Addresses are geocoded through Nominatim. The data layer is shaped like a future API and currently saves in the browser.",
+      "images": [
+        { "src": "", "alt": "Yard Sale Mapper screenshot 1" },
+        { "src": "", "alt": "Yard Sale Mapper screenshot 2" }
+      ]
+    },
+    {
+      "id": "better-dashboards",
+      "name": "Better Dashboards",
+      "group": "work",
+      "year": 2026,
+      "url": "",
+      "repository": "https://github.com/dtaylor113/better-dashboards",
+      "description": "I created these dashboards to make software development work easier for me and my coworkers. View all GitHub pull requests, with an unread-comment count on each one, the Jira tickets assigned to you, and Unleash feature flags across environments. A red badge shows how many comments you have not opened yet, on that pull request or ticket and as a total you can click to see only those. The GitHub page also charts the work: open pull requests split into reviewed, waiting for review, and newly created; closed ones split into merged and closed without merging; and cycle time, the average and median days a pull request takes to merge. Every dashboard is a single HTML file you open directly.",
+      "architecture": "No build step. GitHub is called from the page. Jira and Unleash go through a small local Node relay, because those APIs do not allow a browser to call them. Credentials stay in the browser session.",
+      "images": [
+        { "src": "", "alt": "Better Dashboards screenshot 1" },
+        { "src": "", "alt": "Better Dashboards screenshot 2" }
+      ]
+    },
+    {
+      "id": "openshift-explorer",
+      "name": "OpenShift Explorer",
+      "group": "work",
+      "year": 2026,
+      "url": "https://dtaylor113.github.io/openshift-learning/",
+      "repository": "https://github.com/dtaylor113/openshift-learning",
+      "description": "I created this to help mentor developers. It is an interactive lesson on how OpenShift is put together, walking from an application up through container, pod, node, and cluster, then into Cluster Manager, and comparing the cluster types along the way. Beginner and Expert modes change how technical the explanation is, and hovering a technical acronym shows its definition.",
+      "architecture": "React, TypeScript, and Vite, published as a static GitHub Pages site from the main branch.",
+      "images": [
+        { "src": "", "alt": "OpenShift Explorer screenshot 1" },
+        { "src": "", "alt": "OpenShift Explorer screenshot 2" }
+      ]
+    },
+    {
+      "id": "hackathon-2025",
+      "name": "Hackathon 2025 Red Hat",
+      "group": "work",
+      "year": 2025,
+      "url": "",
+      "repository": "https://github.com/dtaylor113/sol-sc-explorer",
+      "description": "Speed of Light Source Code Explorer, a browser extension for the OpenShift Cluster Manager UI. Hover a control and the matching source file opens beside the page, with a file tree, search, and AI chat and analysis.",
+      "images": [
+        {
+          "src": "media/hackathon-2025.mp4",
+          "poster": "images/hackathon-2025.jpg",
+          "alt": "Hackathon 2025 recording"
+        }
+      ]
+    },
+    {
+      "id": "hackathon-2023",
+      "name": "Hackathon 2023 Red Hat",
+      "group": "work",
+      "year": 2023,
+      "url": "",
+      "repository": "",
+      "description": "A hackathon demo of RedHat Chat, an AI agent assistant for helping someone through the OCM ROSA wizard.",
+      "images": [
+        {
+          "src": "media/hackathon-2023.mp4",
+          "poster": "images/hackathon-2023.jpg",
+          "alt": "Hackathon 2023 recording"
+        }
+      ]
+    },
+    {
+      "id": "hackathon-2022",
+      "name": "Hackathon 2022 Red Hat",
+      "group": "work",
+      "year": 2022,
+      "url": "",
+      "repository": "",
+      "description": "HACk Engineering hackathon talk from March 21, 2022: ClusterList in VR.",
+      "images": [
+        {
+          "src": "media/hackathon-2022.mp4",
+          "poster": "images/hackathon-2022.jpg",
+          "alt": "ClusterList in VR, March 21, 2022"
+        }
+      ]
+    },
+    {
+      "id": "gui-portfolio-work",
+      "name": "GUI Portfolio: Early work career 1994-2015",
+      "group": "work",
+      "url": "files/dave-taylors-gui-portfolio.pdf",
+      "repository": "",
+      "description": "Mockups, wireframes, and diagrams from early career work. It starts with college intern work, including database games written while learning dBASE at Boston City Hall, and continues through later interface work such as facilities tools, topology maps, and dashboards.",
+      "images": []
+    },
+    {
+      "id": "titans-of-tennis",
+      "name": "Titans Of Tennis",
+      "group": "play",
+      "year": 2024,
+      "url": "https://youtu.be/j4MVJHW1x8Q",
+      "repository": "",
+      "description": "Thanks to Lenny, Cliff, and Kevin for putting up with my AI projects. Lyrics by me, tightened up by ChatGPT, sung by Suno. Images generated by DALL-E, face swapped by InsightsFaceSwap, animated by Pika labs and LeiaPix. Video put together in CapCut.",
+      "images": [
+        {
+          "src": "https://youtu.be/j4MVJHW1x8Q",
+          "alt": "Titans Of Tennis music video"
+        }
+      ]
+    },
+    {
+      "id": "gui-portfolio-home",
+      "name": "GUI Portfolio: Early family and community websites",
+      "group": "play",
+      "url": "",
+      "repository": "",
+      "description": "",
+      "points": [
+        "The family website is a home for news, photos, events, and a member list, so relatives can post updates and find one another.",
+        "FinalThoughts.com is a membership site for sharing plans with family. Members keep a private file cabinet of forms for finances, documents, and last wishes, and they can write messages for a chosen guardian to deliver.",
+        "Clinton Minor League is a community baseball site, with pages for tee ball, coach pitch, AAA, and coaches and umpires.",
+        "Clinton Cub Scouts explains the Webelos advancement plan, from the Webelos badge through activity badges to the Arrow of Light."
+      ],
+      "images": []
+    }
+  ]
+}
