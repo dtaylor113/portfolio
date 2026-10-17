@@ -7,7 +7,7 @@
       "year": 2025,
       "url": "https://slideshowstudio.ai/",
       "repository": "https://github.com/dtaylor113/ai-slideshow",
-      "description": "An AI photo studio that generates variations of real memories. Styles are often based on a real artist or a particular art style, and when they are, the app includes an artist bio or a definition of the style, so a variation is also a way to learn about the person who inspired it. It showcases over 800 generated variations of 200 family photos. I coded the AI, which starts with the original photo, reading it for mood, setting, landmarks, objects, and subtle text cues, then drafts a tailored art direction and renders a new image that fuses the photo with that style.",
+      "description": "An AI photo studio that generates variations of real memories. Styles are often based on a real artist or a particular art style, and when they are, the app includes an artist bio or a definition of the style, so a variation is also a way to learn about the person who inspired it. It showcases over 800 generated variations of 200 family photos. I programmed the AI to start with the original photo, reading it for mood, setting, landmarks, objects, and subtle text cues, then draft a tailored art direction and render a new image that fuses the photo with that style.",
       "ordered": true,
       "collapsed": true,
       "pointsLabel": "How it works",
@@ -82,7 +82,7 @@
       "year": 2026,
       "url": "",
       "repository": "https://github.com/dtaylor113/yard-sale-mapper",
-      "description": "A planner for a town-wide yard sale. Import a spreadsheet of addresses, place the stops on a map, choose which ones to visit, and hand an ordered round trip to Google Maps.",
+      "description": "A planner for a town-wide yard sale. Choose the sale, view the stops on a map, and pick the ones you want to visit. Click View in Google Maps for turn-by-turn directions that start and end at your house.",
       "architecture": "React, TypeScript, and Vite, with Leaflet on OpenStreetMap. Addresses are geocoded through Nominatim. The data layer is shaped like a future API and currently saves in the browser.",
       "images": [
         { "src": "", "alt": "Yard Sale Mapper screenshot 1" },
