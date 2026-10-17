@@ -146,7 +146,7 @@
       "year": 2024,
       "url": "",
       "repository": "",
-      "description": "AI Hackathon talk from February 20, 2024. A local assistant finds the source behind a control in the browser, analyzes that code, and looks ahead to updating it.",
+      "description": "I had intended to improve on an AI chatbot, but OpenAI's servers were down for the first two days of the hackathon. Instead I presented an early version of the Speed of Light Source Code Explorer. I explained how I collaborated with AI to code it and how I integrated the chatbot into the explorer, then how using it saved time and money debugging.",
       "images": [
         { "src": "images/hackathon-2024/01.jpg", "alt": "Screenshot 1" },
         { "src": "images/hackathon-2024/02.jpg", "alt": "Screenshot 2" },
@@ -204,7 +204,7 @@
       "year": 2022,
       "url": "",
       "repository": "",
-      "description": "HACk Engineering hackathon talk from March 21, 2022: ClusterList in VR.",
+      "description": "HACk Engineering hackathon talk. I turned the OpenShift cluster list into a VR room of server racks and walked through how sorting, filtering, and links could work in 3D.",
       "images": [
         {
           "src": "media/hackathon-2022.mp4",
@@ -215,7 +215,7 @@
     },
     {
       "id": "gui-portfolio-work",
-      "name": "GUI Portfolio: Early work career 1994-2015",
+      "name": "GUI Portfolio: Early work career",
       "group": "work",
       "url": "",
       "repository": "",
