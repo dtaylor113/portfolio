@@ -35,7 +35,7 @@
       "pointsLabel": "Games",
       "points": [
         "Fight: 2D combat against the computer or a second player.",
-        "Trivia: a head-to-head quiz in that same arena. Pick a category — science, geography, history, pop culture, general knowledge, or all of them — and a difficulty from easy to really hard, or random. A countdown is optional, from 5 to 15 seconds. Each player chooses a head and a body, then you play against the computer, set two computers against each other, or play two people. Scores are kept in dollars, and a missed answer can be stolen.",
+        "Trivia: a head-to-head quiz in that same arena. Choose a category and difficulty, then play another person or the computer.",
         "Gems: a match-3 puzzle built from character heads.",
         "Light Cycles: Tron-style light trails.",
         "Match!: toddler face-matching cards.",
@@ -54,7 +54,7 @@
       "year": 2026,
       "url": "",
       "repository": "https://github.com/dtaylor113/tv-watchlist",
-      "description": "I created a watchlist for my wife and me for the household Fire TVs. We search for movies and shows across all streaming services, keep one shared list, and launch them from each stick. For every series, each card shows the episode we last marked watched, the latest episode that has already aired, and when the next one is scheduled to drop. Every Fire Stick syncs with one central database, and a new version can be sent from a laptop to all five sticks in the house.",
+      "description": "I created a watchlist for my wife and me for the household Fire TVs. We search for movies and shows across all streaming services, keep one shared list, and launch them from any stick. For every series, each card shows the episode we last marked watched, the latest episode that has already aired, and when the next one is scheduled to drop. Every Fire Stick syncs with one central database, and a new version can be sent from a laptop to all five sticks in the house.",
       "architecture": "Expo and React Native for TV, installed as a sideloaded Android app. Search, seasons, and the list live in Supabase and are reached through edge functions.",
       "images": [
         { "src": "", "alt": "Fire TV Watchlist screenshot 1" },
@@ -96,7 +96,13 @@
       "year": 2026,
       "url": "",
       "repository": "https://github.com/dtaylor113/better-dashboards",
-      "description": "I created these dashboards to make software development work easier for me and my coworkers. View all GitHub pull requests, with an unread-comment count on each one, the Jira tickets assigned to you, and Unleash feature flags across environments. A red badge shows how many comments you have not opened yet, on that pull request or ticket and as a total you can click to see only those. The GitHub page also charts the work: open pull requests split into reviewed, waiting for review, and newly created; closed ones split into merged and closed without merging; and cycle time, the average and median days a pull request takes to merge. Every dashboard is a single HTML file you open directly.",
+      "description": "I created these dashboards to make day-to-day development easier for me and my coworkers. Each one is a single HTML file you open directly.",
+      "pointsLabel": "Dashboards",
+      "points": [
+        "Git: open pull requests, with a count of comments you have not opened yet. Charts show how many code reviews are open, how many were merged or closed over the last six months, and cycle time, the average time from creating a pull request to merging it.",
+        "Jira: tickets assigned to you, and tickets that mention you, each marked when comments are still unread.",
+        "Unleashed: tracks over 40 feature flags across all five Commercial and FedRAMP environments, and can toggle any flag on or off in any environment."
+      ],
       "architecture": "No build step. GitHub is called from the page. Jira and Unleash go through a small local Node relay, because those APIs do not allow a browser to call them. Credentials stay in the browser session.",
       "images": [
         { "src": "", "alt": "Better Dashboards screenshot 1" },
@@ -131,6 +137,48 @@
           "poster": "images/hackathon-2025.jpg",
           "alt": "Hackathon 2025 recording"
         }
+      ]
+    },
+    {
+      "id": "hackathon-2024",
+      "name": "Hackathon 2024 Red Hat",
+      "group": "work",
+      "year": 2024,
+      "url": "",
+      "repository": "",
+      "description": "AI Hackathon talk from February 20, 2024. A local assistant finds the source behind a control in the browser, analyzes that code, and looks ahead to updating it.",
+      "images": [
+        { "src": "images/hackathon-2024/01.jpg", "alt": "Screenshot 1" },
+        { "src": "images/hackathon-2024/02.jpg", "alt": "Screenshot 2" },
+        { "src": "images/hackathon-2024/03.jpg", "alt": "Screenshot 3" },
+        { "src": "images/hackathon-2024/04.jpg", "alt": "Screenshot 4" },
+        { "src": "images/hackathon-2024/05.jpg", "alt": "Screenshot 5" },
+        { "src": "images/hackathon-2024/06.jpg", "alt": "Screenshot 6" },
+        { "src": "images/hackathon-2024/07.jpg", "alt": "Screenshot 7" },
+        { "src": "images/hackathon-2024/08.jpg", "alt": "Screenshot 8" },
+        { "src": "images/hackathon-2024/09.jpg", "alt": "Screenshot 9" },
+        { "src": "images/hackathon-2024/10.jpg", "alt": "Screenshot 10" },
+        { "src": "images/hackathon-2024/11.jpg", "alt": "Screenshot 11" },
+        { "src": "images/hackathon-2024/12.jpg", "alt": "Screenshot 12" },
+        { "src": "images/hackathon-2024/13.jpg", "alt": "Screenshot 13" },
+        { "src": "images/hackathon-2024/14.jpg", "alt": "Screenshot 14" },
+        { "src": "images/hackathon-2024/15.jpg", "alt": "Screenshot 15" },
+        { "src": "images/hackathon-2024/16.jpg", "alt": "Screenshot 16" },
+        { "src": "images/hackathon-2024/17.jpg", "alt": "Screenshot 17" },
+        { "src": "images/hackathon-2024/18.jpg", "alt": "Screenshot 18" },
+        { "src": "images/hackathon-2024/19.jpg", "alt": "Screenshot 19" },
+        { "src": "images/hackathon-2024/20.jpg", "alt": "Screenshot 20" },
+        { "src": "images/hackathon-2024/21.jpg", "alt": "Screenshot 21" },
+        { "src": "images/hackathon-2024/22.jpg", "alt": "Screenshot 22" },
+        { "src": "images/hackathon-2024/23.jpg", "alt": "Screenshot 23" },
+        { "src": "images/hackathon-2024/24.jpg", "alt": "Screenshot 24" },
+        { "src": "images/hackathon-2024/25.jpg", "alt": "Screenshot 25" },
+        { "src": "images/hackathon-2024/26.jpg", "alt": "Screenshot 26" },
+        { "src": "images/hackathon-2024/27.jpg", "alt": "Screenshot 27" },
+        { "src": "images/hackathon-2024/28.jpg", "alt": "Screenshot 28" },
+        { "src": "images/hackathon-2024/29.jpg", "alt": "Screenshot 29" },
+        { "src": "images/hackathon-2024/30.jpg", "alt": "Screenshot 30" },
+        { "src": "images/hackathon-2024/31.jpg", "alt": "Screenshot 31" }
       ]
     },
     {
@@ -169,9 +217,9 @@
       "id": "gui-portfolio-work",
       "name": "GUI Portfolio: Early work career 1994-2015",
       "group": "work",
-      "url": "files/dave-taylors-gui-portfolio.pdf",
+      "url": "",
       "repository": "",
-      "description": "Mockups, wireframes, and diagrams from early career work. It starts with college intern work, including database games written while learning dBASE at Boston City Hall, and continues through later interface work such as facilities tools, topology maps, and dashboards.",
+      "description": "I used this portfolio when interviewing for Red Hat in 2015. Mockups, wireframes, and diagrams from early career work. It starts with college intern work, including database games written while learning dBASE at Boston City Hall, and continues through later interface work such as facilities tools, topology maps, and dashboards.",
       "images": []
     },
     {
@@ -179,14 +227,11 @@
       "name": "Titans Of Tennis",
       "group": "play",
       "year": 2024,
-      "url": "https://youtu.be/j4MVJHW1x8Q",
+      "url": "",
       "repository": "",
       "description": "Thanks to Lenny, Cliff, and Kevin for putting up with my AI projects. Lyrics by me, tightened up by ChatGPT, sung by Suno. Images generated by DALL-E, face swapped by InsightsFaceSwap, animated by Pika labs and LeiaPix. Video put together in CapCut.",
       "images": [
-        {
-          "src": "https://youtu.be/j4MVJHW1x8Q",
-          "alt": "Titans Of Tennis music video"
-        }
+        { "src": "https://youtu.be/j4MVJHW1x8Q", "alt": "Titans Of Tennis music video" }
       ]
     },
     {
@@ -197,10 +242,10 @@
       "repository": "",
       "description": "",
       "points": [
-        "The family website is a home for news, photos, events, and a member list, so relatives can post updates and find one another.",
-        "FinalThoughts.com is a membership site for sharing plans with family. Members keep a private file cabinet of forms for finances, documents, and last wishes, and they can write messages for a chosen guardian to deliver.",
+        "FinalThoughts.com is a membership site I built with my brother Todd for sharing plans with family. Members keep a private file cabinet of forms for finances, documents, and last wishes, and they can write messages for a chosen guardian to deliver.",
         "Clinton Minor League is a community baseball site, with pages for tee ball, coach pitch, AAA, and coaches and umpires.",
-        "Clinton Cub Scouts explains the Webelos advancement plan, from the Webelos badge through activity badges to the Arrow of Light."
+        "Clinton Cub Scouts explains the Webelos advancement plan, from the Webelos badge through activity badges to the Arrow of Light.",
+        "The family website is a home for news, photos, events, and a member list, so relatives can post updates and find one another."
       ],
       "images": []
     }

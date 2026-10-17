@@ -143,7 +143,8 @@ function renderHowItWorks(site) {
     ? site.points.filter(Boolean)
     : [];
   const tech = typeof site.architecture === "string" ? site.architecture.trim() : "";
-  if (!steps.length && !tech) return null;
+  const source = githubLink(site);
+  if (!steps.length && !tech && !source) return null;
 
   const details = document.createElement("details");
   details.className = "points";
@@ -170,6 +171,13 @@ function renderHowItWorks(site) {
     details.append(note);
   }
 
+  if (source) {
+    const links = document.createElement("p");
+    links.className = "links source";
+    links.append(source);
+    details.append(links);
+  }
+
   return details;
 }
 
@@ -177,29 +185,38 @@ function renderLinks(site) {
   const links = document.createElement("p");
   links.className = "links";
 
-  const siteLink = externalLink(site.url, site.url);
+  const siteLink = externalLink(site.url, linkLabel(site.url));
   if (siteLink) {
     siteLink.classList.add("site-url");
     links.append(siteLink);
   }
 
-  const source = externalLink(site.repository, site.repository);
-  if (source) links.append(source);
-
   return links.childElementCount ? links : null;
+}
+
+function githubLink(site) {
+  const href = typeof site.repository === "string" ? site.repository.trim() : "";
+  if (!/^https:\/\/github\.com\//i.test(href)) return null;
+  return externalLink(href, href);
+}
+
+function linkLabel(href) {
+  const text = String(href || "");
+  const file = /^files\/(.+)$/i.exec(text);
+  return file ? file[1] : text;
 }
 
 function externalLink(href, label) {
   if (!href || !isSafeHref(href)) return null;
   const link = document.createElement("a");
-  link.href = href;
+  link.href = /^(https?:)?\/\//i.test(href) ? href : encodeURI(href);
   link.textContent = label;
   return link;
 }
 
 function isSafeHref(href) {
   if (/^https?:\/\//i.test(href)) return true;
-  return /^[\w./-]+$/.test(href);
+  return /^[\w./ -]+$/.test(href);
 }
 
 async function resolveImages(site) {
@@ -210,12 +227,52 @@ async function resolveImages(site) {
   const fromFolder = folder.map((image) => listedBySrc.get(image.src) || image);
   const seen = new Set(fromFolder.map((image) => image.src));
   const extras = listed.filter((image) => !seen.has(String(image.src)));
-  const images = [...fromFolder, ...extras];
+  const images = mixesStillsAndMotion(listed)
+    ? authoredOrder(listed, folder)
+    : [...fromFolder, ...extras];
   if (images.length) return images;
   return [{ src: "", alt: `${site.name || "Project"} screenshot` }];
 }
 
+function mixesStillsAndMotion(listed) {
+  let still = false;
+  let motion = false;
+  listed.forEach((image) => {
+    if (isMotion(image)) motion = true;
+    else still = true;
+  });
+  return still && motion;
+}
+
+function isMotion(image) {
+  const src = image && image.src ? String(image.src) : "";
+  return isVideo(src) || Boolean(youtubeId(src));
+}
+
+function authoredOrder(listed, folder) {
+  const seen = new Set(listed.map((image) => String(image.src)));
+  const extras = folder.filter((image) => !seen.has(image.src));
+  return [...listed, ...extras];
+}
+
+let imageManifest;
+
+function loadImageManifest() {
+  if (!imageManifest) {
+    imageManifest = fetch("images/manifest.json", { cache: "no-store" })
+      .then((response) => (response.ok ? response.json() : {}))
+      .catch(() => ({}));
+  }
+  return imageManifest;
+}
+
 async function listFolderShots(id) {
+  const listed = await shotsFromDirectory(id);
+  if (listed.length) return listed;
+  return shotsFromManifest(id);
+}
+
+async function shotsFromDirectory(id) {
   const base = `images/${id}/`;
   try {
     const response = await fetch(base, { cache: "no-store" });
@@ -226,14 +283,28 @@ async function listFolderShots(id) {
     const doc = new DOMParser().parseFromString(html, "text/html");
     const names = [...doc.querySelectorAll("a")]
       .map((anchor) => filenameFromHref(anchor.getAttribute("href") || ""))
-      .filter((name) => /\.(png|jpe?g|gif|webp|avif|mp4|webm)$/i.test(name));
-    return sortShots(names).map((name) => ({
-      src: base + encodeURIComponent(name),
-      alt: labelFromFilename(name),
-    }));
+      .filter(isShotFile);
+    return shotsFromNames(base, names);
   } catch {
     return [];
   }
+}
+
+async function shotsFromManifest(id) {
+  const manifest = await loadImageManifest();
+  const names = Array.isArray(manifest[id]) ? manifest[id].filter(isShotFile) : [];
+  return shotsFromNames(`images/${id}/`, names);
+}
+
+function shotsFromNames(base, names) {
+  return sortShots(names).map((name) => ({
+    src: base + encodeURIComponent(name),
+    alt: labelFromFilename(name),
+  }));
+}
+
+function isShotFile(name) {
+  return /\.(png|jpe?g|gif|webp|avif|mp4|webm)$/i.test(name);
 }
 
 function filenameFromHref(href) {
@@ -253,23 +324,21 @@ function sortShots(names) {
     const right = shotOrder(b);
     if (left.numbered !== right.numbered) return left.numbered ? -1 : 1;
     if (left.number !== right.number) return left.number - right.number;
-    if (left.separator !== right.separator) {
-      if (left.separator === ".") return -1;
-      if (right.separator === ".") return 1;
-    }
+    if (left.rest !== right.rest) return left.rest < right.rest ? -1 : 1;
     return left.name.localeCompare(right.name, undefined, { numeric: true, sensitivity: "base" });
   });
 }
 
 function shotOrder(name) {
-  const match = /^(\d+)([.-])/.exec(name);
+  const stem = name.replace(/\.[^.]+$/, "");
+  const match = /^(\d+)(.*)$/.exec(stem);
   if (!match) {
-    return { numbered: false, number: Number.POSITIVE_INFINITY, separator: "", name: name.toLowerCase() };
+    return { numbered: false, number: Number.POSITIVE_INFINITY, rest: "", name: name.toLowerCase() };
   }
   return {
     numbered: true,
     number: Number(match[1]),
-    separator: match[2],
+    rest: match[2].toLowerCase(),
     name: name.toLowerCase(),
   };
 }
@@ -310,6 +379,8 @@ function renderGallery(site) {
     current = (index + images.length) % images.length;
     const image = images[current];
     media.replaceChildren(createVisual(site, image, current, false));
+    media.scrollLeft = 0;
+    media.scrollTop = 0;
     frame.setAttribute("aria-label", shotLabel(site, image, current));
   }
 
@@ -325,6 +396,7 @@ function renderGallery(site) {
 
   frame.addEventListener("keydown", (event) => {
     if (isViewerOpen()) return;
+    if (event.target.closest("video, iframe")) return;
     if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
     event.preventDefault();
     select(current + (event.key === "ArrowRight" ? 1 : -1));
@@ -350,6 +422,14 @@ function shotNav(label, direction) {
   return button;
 }
 
+const assetVersion = Date.now();
+
+function freshSrc(src) {
+  if (!src || /^(https?:)?\/\//i.test(src)) return src;
+  const joiner = src.includes("?") ? "&" : "?";
+  return `${src}${joiner}v=${assetVersion}`;
+}
+
 function shotLabel(site, image, index) {
   if (image && image.alt) return image.alt;
   return `${site.name || "Project"} screenshot ${index + 1}`;
@@ -368,7 +448,7 @@ function createVisual(site, image, index, compact) {
 
   if (src) {
     const img = document.createElement("img");
-    img.src = src;
+    img.src = freshSrc(src);
     img.alt = compact ? "" : label;
     img.draggable = false;
     img.addEventListener("error", () => {
@@ -437,7 +517,7 @@ function createVideo(image, src, label, compact) {
   video.addEventListener("error", () => {
     video.replaceWith(createPlaceholder(label, 0, compact));
   });
-  return video;
+  return videoFrame(video);
 }
 
 function createPlaceholder(label, index, compact) {
@@ -538,9 +618,25 @@ function renderViewer() {
   const label = image && image.alt ? image.alt : `Image ${viewerState.index + 1}`;
   const src = image && image.src ? String(image.src) : "";
   stage.replaceChildren(viewerVisual(src, label, image));
+  stage.scrollLeft = 0;
+  stage.scrollTop = 0;
   const multiple = viewerState.images.length > 1;
   viewer.querySelector(".shot-nav.prev").hidden = !multiple;
   viewer.querySelector(".shot-nav.next").hidden = !multiple;
+}
+
+function videoFrame(video) {
+  const frame = document.createElement("div");
+  frame.className = "shot-video";
+  const play = document.createElement("span");
+  play.className = "shot-play";
+  play.setAttribute("aria-hidden", "true");
+  const sync = () => frame.classList.toggle("is-playing", !video.paused && !video.ended);
+  video.addEventListener("play", sync);
+  video.addEventListener("pause", sync);
+  video.addEventListener("ended", sync);
+  frame.append(video, play);
+  return frame;
 }
 
 function viewerVisual(src, label, image) {
@@ -552,10 +648,10 @@ function viewerVisual(src, label, image) {
     video.autoplay = false;
     if (image && image.poster) video.poster = image.poster;
     video.setAttribute("aria-label", label);
-    return video;
+    return videoFrame(video);
   }
   const img = document.createElement("img");
-  img.src = src;
+  img.src = freshSrc(src);
   img.alt = label;
   img.draggable = false;
   return img;
@@ -568,6 +664,7 @@ document.addEventListener("keydown", (event) => {
     closeViewer();
     return;
   }
+  if (event.target.closest && event.target.closest("video, iframe")) return;
   if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
   event.preventDefault();
   event.stopPropagation();
