@@ -522,6 +522,10 @@ button:focus-visible,
 }
 
 .site-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
   width: min(1120px, calc(100% - 3rem));
   margin: 0.5rem auto 3.5rem;
   padding-top: 1.75rem;
