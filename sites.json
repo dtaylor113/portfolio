@@ -31,7 +31,7 @@
       "year": 2025,
       "url": "https://headinthegame.ai/",
       "repository": "https://github.com/dtaylor113/ai-game",
-      "description": "Upload one headshot and become a playable character in a catalog of games.",
+      "description": "Upload one headshot and become a playable character in a catalog of games. I programmed the Nano Banana Pro API to create every facial expression from that one photo, and wired the same image generation so a player can create new body styles such as a superhero or ninja.",
       "pointsLabel": "Games",
       "points": [
         "Fight: 2D combat against the computer or a second player.",
@@ -45,6 +45,20 @@
       "images": [
         { "src": "", "alt": "Head in the Game screenshot 1" },
         { "src": "", "alt": "Head in the Game screenshot 2" }
+      ]
+    },
+    {
+      "id": "mp3-manager",
+      "name": "Dave's MP3 Manager",
+      "group": "play",
+      "year": 2026,
+      "url": "",
+      "repository": "https://github.com/dtaylor113/g7-library",
+      "description": "My MP3 player's screen is very small but it has over 3,000 songs on it. Making playlists, deleting albums, and finding duplicate songs was difficult on that screen, so I created Dave's MP3 Manager, a local website for managing the songs and playlists from my computer. It can set mp3 metadata and change genres or merge multiple songs into a single album. It highlights duplicate songs, albums, and folders for easy deletion, and can look up and add missing album cover art. I then configured all my household Alexa devices to play any of these songs, albums, or genres by voice command.",
+      "architecture": "One Node process serves the page and reaches the player through adb. Nothing is stored in a separate database. Genre, album, and cover changes rewrite the tags on the device, and HiBy shows them after Music Scan.",
+      "images": [
+        { "src": "", "alt": "Dave's MP3 Manager screenshot 1" },
+        { "src": "", "alt": "Dave's MP3 Manager screenshot 2" }
       ]
     },
     {
